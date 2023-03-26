@@ -2,7 +2,6 @@ package com.kakovets.criminalintent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +17,5 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.fragment_container, fragment)
                 .commit()
         }
-//        CrimeFragment().onCreate(Bundle())
     }
 }
