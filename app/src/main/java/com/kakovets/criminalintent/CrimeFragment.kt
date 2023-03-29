@@ -21,9 +21,7 @@ class CrimeFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         crime = Crime()
-
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
