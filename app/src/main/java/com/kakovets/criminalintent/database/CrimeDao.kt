@@ -10,6 +10,6 @@ import java.util.UUID
 interface CrimeDao {
     @Query("SELECT * from crime")
     fun getCrimes(): LiveData<List<Crime>>
-    @Query("SELECT * FROM crime WHERE id=(:id)")
+    @Query("SELECT * FROM crime WHERE id = :id")
     fun getCrime(id: UUID): LiveData<Crime?>
 }
