@@ -33,7 +33,7 @@
         android:id="@+id/checkBox_crime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="@string/crime_solved_label" />
+        android:text="@string/crime_solved_label" />
 
 
 
