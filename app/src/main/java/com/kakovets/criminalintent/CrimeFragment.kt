@@ -11,14 +11,16 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import java.util.UUID
+import java.util.*
 
-private const val ARG_CRIME_ID = "crime_id"
 private const val TAG = "CrimeFragment"
+private const val ARG_CRIME_ID = "crime_id"
+private const val DIALOG_DATE = "DialogDate"
 
-class CrimeFragment: Fragment() {
+class CrimeFragment: Fragment(){
 
     private lateinit var crime: Crime
     private lateinit var titleField: EditText
@@ -34,6 +36,14 @@ class CrimeFragment: Fragment() {
         val crimeID: UUID = UUID.fromString(arguments?.getString(ARG_CRIME_ID))
         Log.d(TAG, crimeID.toString())
         crimeDetailViewModel.loadCrime(crimeID)
+
+        // In the book authors use setTargetFragment(), but now it is deprecated,
+        // so there is an implementation with relevant setFragmentResult()
+        setFragmentResultListener("requestKey") { _, bundle ->
+            val receivedDate = bundle.getSerializable("bundleKey") as Date
+            crime.date = receivedDate
+            updateUI()
+        }
     }
 
     override fun onCreateView(
@@ -46,10 +56,6 @@ class CrimeFragment: Fragment() {
         dateButton = view.findViewById(R.id.button_crime)
         solvedCheckBox = view.findViewById(R.id.checkBox_crime)
 
-        dateButton.apply {
-            text = crime.date.toString()
-            isEnabled = false
-        }
         return view
     }
 
@@ -87,6 +93,12 @@ class CrimeFragment: Fragment() {
         solvedCheckBox.apply {
             setOnCheckedChangeListener { _, isChecked ->
                 crime.isSolved = isChecked
+            }
+        }
+
+        dateButton.setOnClickListener {
+            DatePickerFragment.newInstance(crime.date).apply {
+                show(this@CrimeFragment.parentFragmentManager, DIALOG_DATE)
             }
         }
     }
