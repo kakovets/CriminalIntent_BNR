@@ -214,8 +214,12 @@ class CrimeFragment: Fragment(){
             matrix.postRotate(90f)
             bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
             photoView.setImageBitmap(bitmap)
+            photoView.contentDescription =
+                getString(R.string.crime_photo_image_description)
         } else {
             photoView.setImageDrawable(null)
+            photoView.contentDescription =
+                getString(R.string.crime_photo_no_image_description)
         }
     }
 

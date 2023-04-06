@@ -7,13 +7,15 @@ import android.view.*
 import android.view.View.OnClickListener
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import java.util.UUID
+import java.text.SimpleDateFormat
+import java.util.*
 
 private const val TAG = "CrimeListFragment"
 
